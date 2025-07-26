@@ -7,7 +7,9 @@ import { Navigation } from "@/components/Navigation";
 import NotFound from "@/pages/not-found";
 
 import { Home } from "@/pages/Home";
+import { Search } from "@/pages/Search";
 import { Svg } from "@/pages/Svg";
+import { ProfileEdit } from "@/pages/ProfileEdit";
 import { Applications } from "@/pages/Applications";
 import { Feedback } from "@/pages/Feedback";
 
@@ -17,8 +19,10 @@ function Router() {
       <Navigation />
       <Switch>
         {/* Add pages below */}
-        <Route path="/" component={Home} />
+        <Route path="/" component={Search} />
+        <Route path="/home" component={Home} />
         <Route path="/profile" component={Svg} />
+        <Route path="/profile/edit" component={ProfileEdit} />
         <Route path="/applications" component={Applications} />
         <Route path="/feedback" component={Feedback} />
         {/* Fallback to 404 */}

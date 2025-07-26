@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "wouter";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import {
@@ -120,9 +121,11 @@ export const Svg = (): JSX.Element => {
             </p>
           </div>
 
-          <Button className="absolute bottom-4 right-4 h-10 px-6 bg-blue-600 hover:bg-blue-700 text-white rounded">
-            Редактировать профиль
-          </Button>
+          <Link href="/profile/edit">
+            <Button className="absolute bottom-4 right-4 h-10 px-6 bg-blue-600 hover:bg-blue-700 text-white rounded">
+              Редактировать профиль
+            </Button>
+          </Link>
         </div>
 
         {/* Content Area */}

@@ -11,7 +11,7 @@ export const Navigation = ({ className = "" }: NavigationProps): JSX.Element => 
 
   const navItems = [
     { text: "Главная", path: "/", active: location === "/" },
-    { text: "Профиль", path: "/profile", active: location === "/profile" },
+    { text: "Профиль", path: "/profile", active: location === "/profile" || location === "/profile/edit" },
     { text: "Заявки", path: "/applications", active: location === "/applications" },
     { text: "Обратная связь", path: "/feedback", active: location === "/feedback" },
   ];
