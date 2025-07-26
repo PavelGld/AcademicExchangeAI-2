@@ -19,6 +19,10 @@ This project is being migrated from Figma to Replit environment. It appears to b
 - 2025-01-26: Created full REST API with all CRUD operations for students, universities, programs
 - 2025-01-26: Built semantic course matching using vector embeddings
 - 2025-01-26: Integrated LLM for enhanced course descriptions and recommendation reasoning
+- 2025-01-26: Fixed security vulnerability CVE-2025-30208 by upgrading Vite to 5.4.19
+- 2025-01-26: Implemented full dark mode support with ThemeProvider and theme toggle
+- 2025-01-26: Updated all page styling to use CSS variables for proper dark/light mode switching
+- 2025-01-26: Added transparent SVG graduation cap icons to replace background-heavy images
 
 ## Platform Status
 ✅ Database Schema - Complete with all tables and relations

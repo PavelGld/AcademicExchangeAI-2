@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Search as SearchIcon, Calendar, MapPin, Clock } from "lucide-react";
+import { GraduationCapIcon } from "@/components/icons";
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 
@@ -66,7 +67,7 @@ export const Search = (): JSX.Element => {
 
   return (
     <div className="w-full p-4">
-      <div className="bg-white w-full max-w-[1200px] min-h-[800px] relative shadow-lg mx-auto rounded-lg overflow-hidden">
+      <div className="bg-card w-full max-w-[1200px] min-h-[800px] relative shadow-lg mx-auto rounded-lg overflow-hidden border border-border">
         <div className="p-6">
           {/* Search Bar */}
           <div className="relative mb-6">
@@ -84,9 +85,9 @@ export const Search = (): JSX.Element => {
           {/* Filter Bar */}
           <div className="flex flex-wrap gap-4 mb-6">
             <div className="flex flex-col">
-              <label className="text-sm text-gray-600 mb-1">Город</label>
+              <label className="text-sm text-muted-foreground mb-1">Город</label>
               <select 
-                className="px-3 py-2 border border-gray-300 rounded-md min-w-[120px]"
+                className="px-3 py-2 border border-input bg-background text-foreground rounded-md min-w-[120px]"
                 value={filters.city}
                 onChange={(e) => setFilters({...filters, city: e.target.value})}
               >
@@ -97,9 +98,9 @@ export const Search = (): JSX.Element => {
             </div>
             
             <div className="flex flex-col">
-              <label className="text-sm text-gray-600 mb-1">Язык</label>
+              <label className="text-sm text-muted-foreground mb-1">Язык</label>
               <select 
-                className="px-3 py-2 border border-gray-300 rounded-md min-w-[120px]"
+                className="px-3 py-2 border border-input bg-background text-foreground rounded-md min-w-[120px]"
                 value={filters.language}
                 onChange={(e) => setFilters({...filters, language: e.target.value})}
               >
@@ -110,9 +111,9 @@ export const Search = (): JSX.Element => {
             </div>
             
             <div className="flex flex-col">
-              <label className="text-sm text-gray-600 mb-1">Длительность</label>
+              <label className="text-sm text-muted-foreground mb-1">Длительность</label>
               <select 
-                className="px-3 py-2 border border-gray-300 rounded-md min-w-[120px]"
+                className="px-3 py-2 border border-input bg-background text-foreground rounded-md min-w-[120px]"
                 value={filters.duration}
                 onChange={(e) => setFilters({...filters, duration: e.target.value})}
               >
@@ -133,46 +134,51 @@ export const Search = (): JSX.Element => {
           {/* Loading State */}
           {isLoading && (
             <div className="flex justify-center items-center py-12">
-              <div className="text-gray-500">Загрузка программ обмена...</div>
+              <div className="text-muted-foreground">Загрузка программ обмена...</div>
             </div>
           )}
 
           {/* Results Grid */}
           {!isLoading && (
             <>
-              <div className="mb-4 text-sm text-gray-600">
+              <div className="mb-4 text-sm text-muted-foreground">
                 Найдено программ: {filteredPrograms.length}
               </div>
               
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {filteredPrograms.map((program) => (
-                  <Card key={program.id} className="border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
+                  <Card key={program.id} className="border border-border shadow-sm hover:shadow-md transition-shadow">
                     <CardContent className="p-6">
                       <div className="space-y-4">
-                        <div>
-                          <h3 className="font-semibold text-lg text-gray-800 mb-1">
-                            {program.university.name}
-                          </h3>
-                          <p className="text-sm font-medium text-blue-600 mb-2">
-                            {program.name}
-                          </p>
-                          <p className="text-sm text-gray-600 line-clamp-2">
-                            {program.description}
-                          </p>
+                        <div className="flex items-start gap-3">
+                          <div className="flex-shrink-0 mt-1">
+                            <GraduationCapIcon size={20} className="text-blue-600" />
+                          </div>
+                          <div className="flex-1">
+                            <h3 className="font-semibold text-lg text-card-foreground mb-1">
+                              {program.university.name}
+                            </h3>
+                            <p className="text-sm font-medium text-blue-600 mb-2">
+                              {program.name}
+                            </p>
+                            <p className="text-sm text-muted-foreground line-clamp-2">
+                              {program.description}
+                            </p>
+                          </div>
                         </div>
                         
                         <div className="space-y-2">
                           <div className="flex items-center gap-2 text-sm">
-                            <MapPin className="h-4 w-4 text-gray-400" />
-                            <span className="text-gray-600">{program.university.city}</span>
+                            <MapPin className="h-4 w-4 text-muted-foreground" />
+                            <span className="text-muted-foreground">{program.university.city}</span>
                           </div>
                           <div className="flex items-center gap-2 text-sm">
-                            <Clock className="h-4 w-4 text-gray-400" />
-                            <span className="text-gray-600">{program.duration} • {program.language}</span>
+                            <Clock className="h-4 w-4 text-muted-foreground" />
+                            <span className="text-muted-foreground">{program.duration} • {program.language}</span>
                           </div>
                           <div className="flex items-center gap-2 text-sm">
-                            <Calendar className="h-4 w-4 text-gray-400" />
-                            <span className="text-gray-600">
+                            <Calendar className="h-4 w-4 text-muted-foreground" />
+                            <span className="text-muted-foreground">
                               Дедлайн: {new Date(program.applicationDeadline).toLocaleDateString('ru-RU')}
                             </span>
                           </div>
@@ -182,13 +188,13 @@ export const Search = (): JSX.Element => {
                         <div className="flex items-center justify-between">
                           <div className="flex items-center gap-2">
                             <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-                            <span className="text-sm text-gray-600">
+                            <span className="text-sm text-muted-foreground">
                               {program.availableSpots} мест
                             </span>
                           </div>
                           <div className="flex items-center gap-1">
                             <span className="text-yellow-500">★</span>
-                            <span className="text-sm text-gray-600">
+                            <span className="text-sm text-muted-foreground">
                               {program.university.rating}
                             </span>
                           </div>
@@ -205,7 +211,7 @@ export const Search = (): JSX.Element => {
 
               {filteredPrograms.length === 0 && !isLoading && (
                 <div className="text-center py-12">
-                  <p className="text-gray-500">
+                  <p className="text-muted-foreground">
                     Программы не найдены. Попробуйте изменить критерии поиска.
                   </p>
                 </div>

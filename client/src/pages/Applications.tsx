@@ -40,10 +40,10 @@ export const Applications = (): JSX.Element => {
 
   return (
     <div className="w-full p-4">
-      <div className="bg-white w-full max-w-[1200px] min-h-[800px] relative shadow-lg mx-auto rounded-lg overflow-hidden">
+      <div className="bg-card w-full max-w-[1200px] min-h-[800px] relative shadow-lg mx-auto rounded-lg overflow-hidden border border-border">
         <div className="p-8">
           <div className="flex justify-between items-center mb-6">
-            <h1 className="text-3xl font-bold text-gray-800">Заявки</h1>
+            <h1 className="text-3xl font-bold text-card-foreground">Заявки</h1>
             <Button className="bg-blue-500 hover:bg-blue-600 text-white">
               Подать новую заявку
             </Button>
@@ -51,14 +51,14 @@ export const Applications = (): JSX.Element => {
 
           <div className="grid grid-cols-1 gap-6">
             {applications.map((application) => (
-              <Card key={application.id} className="border border-gray-200 shadow-sm">
+              <Card key={application.id} className="border border-border shadow-sm">
                 <CardHeader>
                   <div className="flex justify-between items-start">
                     <div className="flex-1">
-                      <CardTitle className="text-lg font-medium text-gray-800">
+                      <CardTitle className="text-lg font-medium text-card-foreground">
                         {application.title}
                       </CardTitle>
-                      <p className="text-sm text-gray-600 mt-1">
+                      <p className="text-sm text-muted-foreground mt-1">
                         Подано: {application.date}
                       </p>
                     </div>
@@ -68,7 +68,7 @@ export const Applications = (): JSX.Element => {
                   </div>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-gray-700 mb-4">{application.description}</p>
+                  <p className="text-muted-foreground mb-4">{application.description}</p>
                   <div className="flex space-x-2">
                     <Button variant="outline" size="sm">
                       Подробнее
