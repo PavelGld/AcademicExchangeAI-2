@@ -20,8 +20,7 @@ export const Navigation = ({ className = "" }: NavigationProps): JSX.Element => 
   return (
     <header className={`w-full h-20 bg-background border-b border-border z-10 ${className}`}>
       <nav className="w-full h-20 flex items-center px-5 shadow-sm">
-        <div className="w-[66px] h-[66px] flex items-center justify-center">
-          <span className="text-2xl font-bold text-blue-600">УНИ</span>
+        <div className="w-[66px] h-[66px]">
         </div>
 
         <div className="flex ml-[200px] space-x-[100px]">
