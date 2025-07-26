@@ -1,8 +1,12 @@
 # 🎓 University Student Exchange Platform
 
-A modern full-stack web application for managing university student exchange programs with AI-powered course recommendations.
+A web-based prototype derived from the design of a case championship solution - ["Sberbank and ITMO championship within the framework of the forum 'It's up to you to decide'."](https://github.com/PavelGld/Designing-a-platform-for-inter-university-student-exchange)
 
-![Platform Screenshot](docs/platform-preview.png)
+The task involved developing a concept for a digital platform for inter-university student exchange. In this task, analytical efforts were made to define the problem statement, conduct research on relevance and demand, and propose methods for automating the platform using AI.
+
+![image](image_3.png)
+
+![image](image_2.png)
 
 ## 🌟 Features
 
