@@ -79,48 +79,11 @@ export const Svg = (): JSX.Element => {
   ];
 
   return (
-    <div className="bg-gray-50 min-h-screen flex flex-row justify-center w-full">
-      <div className="overflow-hidden bg-white w-[1200px] min-h-[800px] relative shadow-lg">
-        {/* Navigation Bar */}
-        <header className="absolute w-full h-20 top-0 left-0 z-10">
-          <nav className="relative w-full h-20 bg-white border-b border-gray-200 flex items-center px-5 shadow-sm">
-            <img
-              className="w-[66px] h-[66px] object-cover"
-              alt="University Logo"
-              src="/figmaAssets/chatgpt-image-10------2025-----14-22-45-photoroom-1.png"
-            />
-
-            <div className="flex ml-[200px] space-x-[100px]">
-              {navItems.map((item, index) => (
-                <a
-                  key={index}
-                  href="#"
-                  className={`font-normal text-base ${item.active ? "text-[#007bff]" : "text-[#212529]"}`}
-                >
-                  {item.text}
-                </a>
-              ))}
-            </div>
-
-            <div className="ml-auto flex items-center space-x-4">
-              <img
-                className="w-[49px] h-[37px]"
-                alt="Notification"
-                src="/figmaAssets/xmlid-2-.svg"
-              />
-              <Avatar className="w-[58px] h-[58px]">
-                <AvatarImage src="/figmaAssets/vector-2.png" alt="User" />
-                <AvatarFallback>ИИ</AvatarFallback>
-              </Avatar>
-              <Button className="h-10 w-[69px] bg-blue-600 hover:bg-blue-700 text-white rounded">
-                Выйти
-              </Button>
-            </div>
-          </nav>
-        </header>
+    <div className="w-full p-4">
+      <div className="bg-white w-full max-w-[1200px] min-h-[800px] relative shadow-lg mx-auto rounded-lg overflow-hidden">
 
         {/* Profile Header */}
-        <div className="absolute w-[1160px] h-[150px] top-[100px] left-5 bg-blue-500 rounded-lg flex items-start p-5 shadow-md">
+        <div className="w-full h-[150px] bg-blue-500 rounded-lg flex items-start p-5 shadow-md mx-4 my-4" style={{width: 'calc(100% - 2rem)'}}>
           <Avatar className="w-[100px] h-[100px]">
             <AvatarImage
               src="/figmaAssets/vector-2.png"
@@ -142,13 +105,15 @@ export const Svg = (): JSX.Element => {
             </p>
           </div>
 
-          <Button className="absolute right-[11px] bottom-[11px] h-10 w-[200px] bg-blue-600 hover:bg-blue-700 text-white rounded">
+          <Button className="ml-auto mt-auto h-10 w-[200px] bg-blue-600 hover:bg-blue-700 text-white rounded">
             Редактировать профиль
           </Button>
         </div>
 
-        {/* Academic Information Card */}
-        <Card className="absolute w-[560px] h-[300px] top-[270px] left-5 bg-white border border-gray-200 rounded-lg shadow-md">
+        {/* Content Area */}
+        <div className="flex flex-wrap gap-4 p-4">
+          {/* Academic Information Card */}
+          <Card className="w-full md:w-[560px] h-[300px] bg-white border border-gray-200 rounded-lg shadow-md">
           <CardHeader className="pt-[23px] pb-2 px-5">
             <CardTitle className="font-normal text-base text-[#212529]">
               Академическая информация
@@ -170,8 +135,10 @@ export const Svg = (): JSX.Element => {
           </CardContent>
         </Card>
 
-        {/* Achievements Card */}
-        <Card className="absolute w-[560px] h-[150px] top-[270px] left-[600px] bg-blue-500 border-none rounded-lg shadow-md">
+          {/* Right Column */}
+          <div className="flex flex-col gap-4 w-full md:w-[560px]">
+            {/* Achievements Card */}
+            <Card className="h-[150px] bg-blue-500 border-none rounded-lg shadow-md">
           <CardHeader className="pt-[23px] pb-2 px-5">
             <CardTitle className="font-normal text-base text-white">
               Достижения
@@ -197,8 +164,8 @@ export const Svg = (): JSX.Element => {
           </CardContent>
         </Card>
 
-        {/* Applications Card */}
-        <Card className="absolute w-[560px] h-[142px] top-[430px] left-[600px] bg-blue-500 border-none rounded-lg shadow-md">
+            {/* Applications Card */}
+            <Card className="h-[142px] bg-blue-500 border-none rounded-lg shadow-md">
           <CardHeader className="pt-[11px] pb-0 px-5">
             <CardTitle className="font-normal text-base text-white">
               Заявки
@@ -226,9 +193,11 @@ export const Svg = (): JSX.Element => {
             </div>
           </CardContent>
         </Card>
+          </div>
+        </div>
 
         {/* Grade Book Card */}
-        <Card className="absolute w-[1140px] h-[150px] top-[590px] left-5 bg-blue-500 border-none rounded-lg shadow-md">
+        <Card className="w-full h-[150px] bg-blue-500 border-none rounded-lg shadow-md mx-4 mb-4" style={{width: 'calc(100% - 2rem)'}}>
           <CardHeader className="pt-[23px] pb-2 px-5">
             <CardTitle className="font-normal text-base text-white">
               Зачетная книжка
@@ -255,17 +224,7 @@ export const Svg = (): JSX.Element => {
               </div>
             ))}
 
-            {/* Custom Scrollbar */}
-            <div className="absolute w-[21px] h-36 top-[3px] right-0">
-              <div className="relative h-36">
-                <div className="h-[125px] top-[9px] bg-blue-300 absolute w-[21px] left-0 rounded-sm" />
-                <div className="top-0 bg-blue-300 absolute w-[21px] h-5 left-0 rounded-full" />
-                <div className="top-[22px] bg-blue-600 absolute w-[21px] h-5 left-0 rounded-full" />
-                <div className="top-[51px] bg-blue-600 absolute w-[21px] h-5 left-0 rounded-full" />
-                <div className="top-[124px] bg-blue-300 absolute w-[21px] h-5 left-0 rounded-full" />
-                <div className="h-[31px] top-[31px] bg-blue-600 absolute w-[21px] left-0" />
-              </div>
-            </div>
+
           </CardContent>
         </Card>
       </div>
