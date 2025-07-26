@@ -1,6 +1,7 @@
 import { Link, useLocation } from "wouter";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
+import { ThemeToggle } from "@/components/theme-toggle";
 
 interface NavigationProps {
   className?: string;
@@ -38,6 +39,7 @@ export const Navigation = ({ className = "" }: NavigationProps): JSX.Element => 
         </div>
 
         <div className="ml-auto flex items-center space-x-4">
+          <ThemeToggle />
           <img
             className="w-[49px] h-[37px] dark:invert"
             alt="Notification"

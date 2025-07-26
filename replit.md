@@ -23,6 +23,8 @@ This project is being migrated from Figma to Replit environment. It appears to b
 - 2025-01-26: Implemented full dark mode support with ThemeProvider and theme toggle
 - 2025-01-26: Updated all page styling to use CSS variables for proper dark/light mode switching
 - 2025-01-26: Added transparent SVG graduation cap icons to replace background-heavy images
+- 2025-01-26: Removed graduation cap logo and "УНИ" text from navigation header
+- 2025-01-26: Added working theme toggle with sun/moon icons to navigation bar
 
 ## Platform Status
 ✅ Database Schema - Complete with all tables and relations
