@@ -40,11 +40,6 @@ export const Navigation = ({ className = "" }: NavigationProps): JSX.Element => 
 
         <div className="ml-auto flex items-center space-x-4">
           <ThemeToggle />
-          <img
-            className="w-[49px] h-[37px] dark:invert"
-            alt="Notification"
-            src="/figmaAssets/xmlid-2-.svg"
-          />
           <Avatar className="w-[58px] h-[58px]">
             <AvatarImage src="/figmaAssets/vector-2.png" alt="User" />
             <AvatarFallback>ИИ</AvatarFallback>
