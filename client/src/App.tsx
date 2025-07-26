@@ -12,6 +12,7 @@ import { Svg } from "@/pages/Svg";
 import { ProfileEdit } from "@/pages/ProfileEdit";
 import { Applications } from "@/pages/Applications";
 import { Feedback } from "@/pages/Feedback";
+import { Recommendations } from "@/pages/Recommendations";
 
 function Router() {
   return (
@@ -23,6 +24,7 @@ function Router() {
         <Route path="/home" component={Home} />
         <Route path="/profile" component={Svg} />
         <Route path="/profile/edit" component={ProfileEdit} />
+        <Route path="/recommendations" component={Recommendations} />
         <Route path="/applications" component={Applications} />
         <Route path="/feedback" component={Feedback} />
         {/* Fallback to 404 */}

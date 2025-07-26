@@ -10,7 +10,8 @@ export const Navigation = ({ className = "" }: NavigationProps): JSX.Element => 
   const [location] = useLocation();
 
   const navItems = [
-    { text: "Главная", path: "/", active: location === "/" },
+    { text: "Поиск", path: "/", active: location === "/" },
+    { text: "Рекомендации", path: "/recommendations", active: location === "/recommendations" },
     { text: "Профиль", path: "/profile", active: location === "/profile" || location === "/profile/edit" },
     { text: "Заявки", path: "/applications", active: location === "/applications" },
     { text: "Обратная связь", path: "/feedback", active: location === "/feedback" },

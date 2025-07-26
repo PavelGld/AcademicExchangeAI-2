@@ -2,38 +2,67 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
-import { Search as SearchIcon } from "lucide-react";
+import { Search as SearchIcon, Calendar, MapPin, Clock } from "lucide-react";
+import { useQuery } from "@tanstack/react-query";
+import { useState } from "react";
+
+interface ExchangeProgram {
+  id: number;
+  universityId: number;
+  name: string;
+  description: string;
+  duration: string;
+  language: string;
+  requirements: any;
+  availableSpots: number;
+  applicationDeadline: string;
+  semesterStart: string;
+  semesterEnd: string;
+  isActive: boolean;
+  createdAt: string;
+  university: {
+    id: number;
+    name: string;
+    city: string;
+    country: string;
+    description: string;
+    website: string;
+    rating: number;
+  };
+}
 
 export const Search = (): JSX.Element => {
-  const programs = [
-    {
-      id: 1,
-      name: "ИТМО",
-      year: "Набор 2025",
-      city: "Санкт-Петербург",
-      location: "Москва",
-      status: "Подробнее",
-      statusColor: "bg-blue-500"
-    },
-    {
-      id: 2,
-      name: "МГУ",
-      year: "Набор 2025",
-      city: "Санкт-Петербург",
-      location: "Москва",
-      status: "Подробнее",
-      statusColor: "bg-blue-500"
-    },
-    {
-      id: 3,
-      name: "ВШЭ - Москва",
-      year: "Набор 2025",
-      city: "Москва",
-      location: "Москва",
-      status: "Подробнее",
-      statusColor: "bg-blue-500"
+  const [searchQuery, setSearchQuery] = useState("");
+  const [filters, setFilters] = useState({
+    city: "",
+    language: "",
+    duration: ""
+  });
+
+  const { data: programs = [], isLoading } = useQuery<ExchangeProgram[]>({
+    queryKey: ['/api/exchange-programs', filters],
+    queryFn: async () => {
+      const params = new URLSearchParams();
+      if (filters.city) params.append('city', filters.city);
+      if (filters.language) params.append('language', filters.language);
+      if (filters.duration) params.append('duration', filters.duration);
+      
+      const response = await fetch(`/api/exchange-programs?${params}`);
+      if (!response.ok) throw new Error('Failed to fetch programs');
+      return response.json();
     }
-  ];
+  });
+
+  const filteredPrograms = programs.filter(program => 
+    searchQuery === "" || 
+    program.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    program.university.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    program.description.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
+  const handleApplyFilters = () => {
+    // Filters are already applied via useQuery dependency
+  };
 
   return (
     <div className="w-full p-4">
@@ -44,143 +73,145 @@ export const Search = (): JSX.Element => {
             <Input 
               placeholder="Введите направление, вуз или страну"
               className="pr-12 h-12 text-base"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
             />
-            <Button 
-              size="sm" 
-              className="absolute right-1 top-1 h-10 w-10 bg-blue-500 hover:bg-blue-600"
-            >
-              <SearchIcon className="h-4 w-4" />
-            </Button>
+            <div className="absolute right-1 top-1 h-10 w-10 flex items-center justify-center">
+              <SearchIcon className="h-4 w-4 text-gray-400" />
+            </div>
           </div>
 
           {/* Filter Bar */}
           <div className="flex flex-wrap gap-4 mb-6">
             <div className="flex flex-col">
               <label className="text-sm text-gray-600 mb-1">Город</label>
-              <select className="px-3 py-2 border border-gray-300 rounded-md min-w-[120px]">
-                <option>Все</option>
-                <option>Москва</option>
-                <option>Санкт-Петербург</option>
-              </select>
-            </div>
-            
-            <div className="flex flex-col">
-              <label className="text-sm text-gray-600 mb-1">Направление</label>
-              <select className="px-3 py-2 border border-gray-300 rounded-md min-w-[120px]">
-                <option>Все</option>
-                <option>IT</option>
-                <option>Экономика</option>
+              <select 
+                className="px-3 py-2 border border-gray-300 rounded-md min-w-[120px]"
+                value={filters.city}
+                onChange={(e) => setFilters({...filters, city: e.target.value})}
+              >
+                <option value="">Все</option>
+                <option value="Москва">Москва</option>
+                <option value="Санкт-Петербург">Санкт-Петербург</option>
               </select>
             </div>
             
             <div className="flex flex-col">
               <label className="text-sm text-gray-600 mb-1">Язык</label>
-              <select className="px-3 py-2 border border-gray-300 rounded-md min-w-[120px]">
-                <option>Все</option>
-                <option>Русский</option>
-                <option>Английский</option>
+              <select 
+                className="px-3 py-2 border border-gray-300 rounded-md min-w-[120px]"
+                value={filters.language}
+                onChange={(e) => setFilters({...filters, language: e.target.value})}
+              >
+                <option value="">Все</option>
+                <option value="Русский">Русский</option>
+                <option value="Английский">Английский</option>
               </select>
             </div>
             
             <div className="flex flex-col">
               <label className="text-sm text-gray-600 mb-1">Длительность</label>
-              <select className="px-3 py-2 border border-gray-300 rounded-md min-w-[120px]">
-                <option>Все</option>
-                <option>4 года</option>
-                <option>2 года</option>
+              <select 
+                className="px-3 py-2 border border-gray-300 rounded-md min-w-[120px]"
+                value={filters.duration}
+                onChange={(e) => setFilters({...filters, duration: e.target.value})}
+              >
+                <option value="">Все</option>
+                <option value="семестр">Семестр</option>
+                <option value="год">Год</option>
               </select>
             </div>
             
-            <Button className="mt-6 bg-blue-500 hover:bg-blue-600 text-white px-8">
+            <Button 
+              onClick={handleApplyFilters}
+              className="mt-6 bg-blue-500 hover:bg-blue-600 text-white px-8"
+            >
               Применить
             </Button>
           </div>
 
+          {/* Loading State */}
+          {isLoading && (
+            <div className="flex justify-center items-center py-12">
+              <div className="text-gray-500">Загрузка программ обмена...</div>
+            </div>
+          )}
+
           {/* Results Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {programs.map((program) => (
-              <Card key={program.id} className="border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
-                <CardContent className="p-4">
-                  <div className="space-y-3">
-                    <div>
-                      <h3 className="font-semibold text-lg text-gray-800">{program.name}</h3>
-                      <p className="text-sm text-gray-600">{program.year}</p>
-                    </div>
-                    
-                    <div className="space-y-2">
-                      <div className="flex justify-between text-sm">
-                        <span className="text-gray-600">Город:</span>
-                        <span className="text-gray-800">{program.city}</span>
+          {!isLoading && (
+            <>
+              <div className="mb-4 text-sm text-gray-600">
+                Найдено программ: {filteredPrograms.length}
+              </div>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {filteredPrograms.map((program) => (
+                  <Card key={program.id} className="border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
+                    <CardContent className="p-6">
+                      <div className="space-y-4">
+                        <div>
+                          <h3 className="font-semibold text-lg text-gray-800 mb-1">
+                            {program.university.name}
+                          </h3>
+                          <p className="text-sm font-medium text-blue-600 mb-2">
+                            {program.name}
+                          </p>
+                          <p className="text-sm text-gray-600 line-clamp-2">
+                            {program.description}
+                          </p>
+                        </div>
+                        
+                        <div className="space-y-2">
+                          <div className="flex items-center gap-2 text-sm">
+                            <MapPin className="h-4 w-4 text-gray-400" />
+                            <span className="text-gray-600">{program.university.city}</span>
+                          </div>
+                          <div className="flex items-center gap-2 text-sm">
+                            <Clock className="h-4 w-4 text-gray-400" />
+                            <span className="text-gray-600">{program.duration} • {program.language}</span>
+                          </div>
+                          <div className="flex items-center gap-2 text-sm">
+                            <Calendar className="h-4 w-4 text-gray-400" />
+                            <span className="text-gray-600">
+                              Дедлайн: {new Date(program.applicationDeadline).toLocaleDateString('ru-RU')}
+                            </span>
+                          </div>
+                        </div>
+
+                        {/* Available spots indicator */}
+                        <div className="flex items-center justify-between">
+                          <div className="flex items-center gap-2">
+                            <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+                            <span className="text-sm text-gray-600">
+                              {program.availableSpots} мест
+                            </span>
+                          </div>
+                          <div className="flex items-center gap-1">
+                            <span className="text-yellow-500">★</span>
+                            <span className="text-sm text-gray-600">
+                              {program.university.rating}
+                            </span>
+                          </div>
+                        </div>
+
+                        <Button className="w-full bg-blue-500 hover:bg-blue-600 text-white">
+                          Подробнее
+                        </Button>
                       </div>
-                      <div className="flex justify-between text-sm">
-                        <span className="text-gray-600">Локация:</span>
-                        <span className="text-gray-800">{program.location}</span>
-                      </div>
-                    </div>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
 
-                    {/* Status Indicators */}
-                    <div className="flex items-center gap-2">
-                      <div className="w-3 h-3 bg-green-500 rounded"></div>
-                      <div className="w-3 h-3 bg-gray-400 rounded"></div>
-                      <div className="w-3 h-3 bg-gray-400 rounded"></div>
-                      <div className="flex-1"></div>
-                      <Badge variant="outline" className="text-xs">📋</Badge>
-                      <Badge variant="outline" className="text-xs">🏠</Badge>
-                    </div>
-
-                    <Button 
-                      className={`w-full ${program.statusColor} hover:bg-blue-600 text-white text-sm`}
-                    >
-                      {program.status}
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-
-          {/* Duplicate rows for demonstration */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
-            {programs.map((program, index) => (
-              <Card key={`row2-${program.id}`} className="border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
-                <CardContent className="p-4">
-                  <div className="space-y-3">
-                    <div>
-                      <h3 className="font-semibold text-lg text-gray-800">{program.name}</h3>
-                      <p className="text-sm text-gray-600">{program.year}</p>
-                    </div>
-                    
-                    <div className="space-y-2">
-                      <div className="flex justify-between text-sm">
-                        <span className="text-gray-600">Город:</span>
-                        <span className="text-gray-800">{program.city}</span>
-                      </div>
-                      <div className="flex justify-between text-sm">
-                        <span className="text-gray-600">Локация:</span>
-                        <span className="text-gray-800">{program.location}</span>
-                      </div>
-                    </div>
-
-                    {/* Status Indicators */}
-                    <div className="flex items-center gap-2">
-                      <div className="w-3 h-3 bg-green-500 rounded"></div>
-                      <div className="w-3 h-3 bg-gray-400 rounded"></div>
-                      <div className="w-3 h-3 bg-gray-400 rounded"></div>
-                      <div className="flex-1"></div>
-                      <Badge variant="outline" className="text-xs">📋</Badge>
-                      <Badge variant="outline" className="text-xs">🏠</Badge>
-                    </div>
-
-                    <Button 
-                      className={`w-full ${program.statusColor} hover:bg-blue-600 text-white text-sm`}
-                    >
-                      {program.status}
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+              {filteredPrograms.length === 0 && !isLoading && (
+                <div className="text-center py-12">
+                  <p className="text-gray-500">
+                    Программы не найдены. Попробуйте изменить критерии поиска.
+                  </p>
+                </div>
+              )}
+            </>
+          )}
         </div>
       </div>
     </div>
