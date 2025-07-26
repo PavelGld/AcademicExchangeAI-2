@@ -1,3 +1,16 @@
+/**
+ * Database Storage Interface
+ * 
+ * Provides type-safe database operations using Drizzle ORM
+ * All CRUD operations for the university exchange platform
+ * 
+ * Features:
+ * - PostgreSQL with Neon serverless
+ * - Type-safe queries and mutations
+ * - Comprehensive data models
+ * - Optimized for performance
+ */
+
 import { 
   students, 
   universities, 

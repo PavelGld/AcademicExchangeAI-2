@@ -7,9 +7,14 @@ interface NavigationProps {
   className?: string;
 }
 
+/**
+ * Navigation component for the university exchange platform
+ * Provides main navigation with responsive dark/light mode support
+ */
 export const Navigation = ({ className = "" }: NavigationProps): JSX.Element => {
   const [location] = useLocation();
 
+  // Navigation menu items with their paths and active states
   const navItems = [
     { text: "Поиск", path: "/", active: location === "/" },
     { text: "Рекомендации", path: "/recommendations", active: location === "/recommendations" },
@@ -21,9 +26,11 @@ export const Navigation = ({ className = "" }: NavigationProps): JSX.Element => 
   return (
     <header className={`w-full h-20 bg-background border-b border-border z-10 ${className}`}>
       <nav className="w-full h-20 flex items-center px-5 shadow-sm">
+        {/* Empty space for logo (removed per user request) */}
         <div className="w-[66px] h-[66px]">
         </div>
 
+        {/* Main navigation menu */}
         <div className="flex ml-[200px] space-x-[100px]">
           {navItems.map((item, index) => (
             <Link
@@ -38,6 +45,7 @@ export const Navigation = ({ className = "" }: NavigationProps): JSX.Element => 
           ))}
         </div>
 
+        {/* Right side controls: theme toggle, user avatar, logout */}
         <div className="ml-auto flex items-center space-x-4">
           <ThemeToggle />
           <Avatar className="w-[58px] h-[58px]">

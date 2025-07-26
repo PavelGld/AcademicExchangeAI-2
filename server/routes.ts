@@ -1,3 +1,15 @@
+/**
+ * API Routes for University Student Exchange Platform
+ * 
+ * This file defines all REST API endpoints for the application:
+ * - Student management (CRUD operations)
+ * - University and exchange program data
+ * - AI-powered course recommendations
+ * - Application tracking system
+ * - Student achievements and grade book
+ * - Review and feedback system
+ */
+
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";

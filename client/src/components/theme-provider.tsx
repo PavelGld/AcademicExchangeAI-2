@@ -1,3 +1,13 @@
+/**
+ * Theme Provider for University Exchange Platform
+ * 
+ * Provides comprehensive dark/light mode support with:
+ * - System preference detection
+ * - Local storage persistence
+ * - Smooth theme transitions
+ * - CSS custom property updates
+ */
+
 import { createContext, useContext, useEffect, useState } from "react"
 
 type Theme = "dark" | "light" | "system"

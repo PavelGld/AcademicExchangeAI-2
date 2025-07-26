@@ -1,9 +1,23 @@
+/**
+ * Database Schema for University Student Exchange Platform
+ * 
+ * This file defines all database tables, relations, and Zod schemas
+ * for the university exchange application system.
+ * 
+ * Features:
+ * - Complete student management system
+ * - University and exchange program data
+ * - AI-powered course recommendations with vector embeddings
+ * - Application tracking and reviews
+ * - Student achievements and grade book
+ */
+
 import { pgTable, text, serial, integer, boolean, timestamp, real, jsonb } from "drizzle-orm/pg-core";
 import { relations } from "drizzle-orm";
 import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
 
-// Students table
+// Students table - stores student profile information
 export const students = pgTable("students", {
   id: serial("id").primaryKey(),
   fullName: text("full_name").notNull(),
