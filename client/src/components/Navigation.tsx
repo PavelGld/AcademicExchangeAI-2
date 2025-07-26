@@ -1,6 +1,7 @@
 import { Link, useLocation } from "wouter";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
+import { ThemeToggle } from "@/components/theme-toggle";
 
 interface NavigationProps {
   className?: string;
@@ -18,7 +19,7 @@ export const Navigation = ({ className = "" }: NavigationProps): JSX.Element => 
   ];
 
   return (
-    <header className={`w-full h-20 bg-white border-b border-gray-200 z-10 ${className}`}>
+    <header className={`w-full h-20 bg-background border-b border-border z-10 ${className}`}>
       <nav className="w-full h-20 flex items-center px-5 shadow-sm">
         <img
           className="w-[66px] h-[66px] object-cover"
@@ -32,7 +33,7 @@ export const Navigation = ({ className = "" }: NavigationProps): JSX.Element => 
               key={index}
               href={item.path}
               className={`font-normal text-base hover:text-blue-600 transition-colors ${
-                item.active ? "text-[#007bff]" : "text-[#212529]"
+                item.active ? "text-[#007bff]" : "text-foreground"
               }`}
             >
               {item.text}
@@ -42,10 +43,11 @@ export const Navigation = ({ className = "" }: NavigationProps): JSX.Element => 
 
         <div className="ml-auto flex items-center space-x-4">
           <img
-            className="w-[49px] h-[37px]"
+            className="w-[49px] h-[37px] dark:invert"
             alt="Notification"
             src="/figmaAssets/xmlid-2-.svg"
           />
+          <ThemeToggle />
           <Avatar className="w-[58px] h-[58px]">
             <AvatarImage src="/figmaAssets/vector-2.png" alt="User" />
             <AvatarFallback>ИИ</AvatarFallback>
