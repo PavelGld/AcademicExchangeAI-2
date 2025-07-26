@@ -20,11 +20,9 @@ export const Navigation = ({ className = "" }: NavigationProps): JSX.Element => 
   return (
     <header className={`w-full h-20 bg-background border-b border-border z-10 ${className}`}>
       <nav className="w-full h-20 flex items-center px-5 shadow-sm">
-        <img
-          className="w-[66px] h-[66px] object-cover"
-          alt="University Logo"
-          src="/figmaAssets/chatgpt-image-10------2025-----14-22-45-photoroom-1.png"
-        />
+        <div className="w-[66px] h-[66px] flex items-center justify-center">
+          <span className="text-2xl font-bold text-blue-600">УНИ</span>
+        </div>
 
         <div className="flex ml-[200px] space-x-[100px]">
           {navItems.map((item, index) => (

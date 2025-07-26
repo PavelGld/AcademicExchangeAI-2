@@ -18,16 +18,3 @@ export const GraduationCapIcon = ({ className = "", size = 24 }: IconProps) => (
   </svg>
 );
 
-export const ToggleSwitchIcon = ({ className = "", size = 48 }: IconProps) => (
-  <svg 
-    width={size} 
-    height={size / 2} 
-    viewBox="0 0 48 24" 
-    fill="none" 
-    xmlns="http://www.w3.org/2000/svg"
-    className={className}
-  >
-    <rect width="48" height="24" rx="12" fill="currentColor" opacity="0.2"/>
-    <circle cx="12" cy="12" r="10" fill="currentColor"/>
-  </svg>
-);
