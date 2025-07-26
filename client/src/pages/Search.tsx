@@ -3,7 +3,6 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Search as SearchIcon, Calendar, MapPin, Clock } from "lucide-react";
-import { GraduationCapIcon } from "@/components/icons";
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 
@@ -150,21 +149,16 @@ export const Search = (): JSX.Element => {
                   <Card key={program.id} className="border border-border shadow-sm hover:shadow-md transition-shadow">
                     <CardContent className="p-6">
                       <div className="space-y-4">
-                        <div className="flex items-start gap-3">
-                          <div className="flex-shrink-0 mt-1">
-                            <GraduationCapIcon size={20} className="text-blue-600" />
-                          </div>
-                          <div className="flex-1">
-                            <h3 className="font-semibold text-lg text-card-foreground mb-1">
-                              {program.university.name}
-                            </h3>
-                            <p className="text-sm font-medium text-blue-600 mb-2">
-                              {program.name}
-                            </p>
-                            <p className="text-sm text-muted-foreground line-clamp-2">
-                              {program.description}
-                            </p>
-                          </div>
+                        <div>
+                          <h3 className="font-semibold text-lg text-card-foreground mb-1">
+                            {program.university.name}
+                          </h3>
+                          <p className="text-sm font-medium text-blue-600 mb-2">
+                            {program.name}
+                          </p>
+                          <p className="text-sm text-muted-foreground line-clamp-2">
+                            {program.description}
+                          </p>
                         </div>
                         
                         <div className="space-y-2">

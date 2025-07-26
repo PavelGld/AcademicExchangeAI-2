@@ -1,7 +1,6 @@
 import { Link, useLocation } from "wouter";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
-import { ThemeToggle } from "@/components/theme-toggle";
 
 interface NavigationProps {
   className?: string;
@@ -47,7 +46,6 @@ export const Navigation = ({ className = "" }: NavigationProps): JSX.Element => 
             alt="Notification"
             src="/figmaAssets/xmlid-2-.svg"
           />
-          <ThemeToggle />
           <Avatar className="w-[58px] h-[58px]">
             <AvatarImage src="/figmaAssets/vector-2.png" alt="User" />
             <AvatarFallback>ИИ</AvatarFallback>
