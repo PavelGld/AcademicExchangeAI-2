@@ -318,8 +318,5 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - **Tailwind CSS** - Utility-first CSS framework  
 - **Drizzle ORM** - Modern TypeScript ORM
 - **OpenRouter** - AI/LLM integration platform
-- **Replit** - Development and hosting platform
 
 ---
-
-Built with ❤️ for modern university exchange programs
