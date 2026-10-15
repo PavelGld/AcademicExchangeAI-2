@@ -295,18 +295,6 @@ The platform is designed to integrate with authentication systems:
 - Prettier formatting recommended
 - Comment important business logic
 
-## 📞 Support
-
-### Technical Issues
-- Check the console for error messages
-- Verify database connection
-- Ensure all dependencies are installed
-- Review environment variable configuration
-
-### Feature Requests
-- Open an issue with detailed description
-- Include use cases and expected behavior
-- Provide mockups or examples if applicable
 
 ## 📄 License
 
